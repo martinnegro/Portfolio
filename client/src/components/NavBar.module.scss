@@ -1,0 +1,31 @@
+.forMargin {
+    position: fixed;
+    height: 100vh;
+    display: flex;
+
+}
+
+.navContainer {
+    height: 375px;
+    width: 50px;
+    
+    margin: auto 0 auto 0;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+
+    font-size: 2rem;
+}
+
+
+
+.description {
+    color: black;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    overflow: hidden;
+    transition: height 0.5s ease-out;
+}
