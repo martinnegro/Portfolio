@@ -45,15 +45,14 @@ function NavBar() {
     useEffect(() => {
         window.addEventListener("scroll", () => {
           const vh = Math.max(document.documentElement.scrollHeight || 0, window.innerHeight || 0) / 4
-          console.log('vh: ',vh)
-          const place = Math.ceil((window.scrollY + 10) / vh)
-          place === 1 
+          const place = ( window.scrollY + 10 )/ vh
+          place < 0.65
           ? setSelectedSection(initSection)
-          : place === 2
+          : place < 1.65
           ? setSelectedSection(portfolioSection)
-          : place === 3
+          : place < 2.65
           ? setSelectedSection(resumeSection)
-          : place === 4
+          : place < 3.65
           ? setSelectedSection(contactMeSection)
           : setSelectedSection(initSection);
         });
@@ -62,25 +61,25 @@ function NavBar() {
     return (
         <div className={style.forMargin}>
         <div className={style.navContainer}>
-                <HashLink smooth to='/#about-me'>        
+                <HashLink smooth to='/#about-me' class={style.icon}>        
                     <MdPersonPin/>
                 </HashLink>
                 <div className={style.description} style={selectedSection.aboutMe}>
                     ABOUTME
                 </div>
-                <HashLink smooth to='/#portfolio'>
+                <HashLink smooth to='/#portfolio' class={style.icon}>
                     <BsFolder />
                 </HashLink>            
                 <div className={style.description} style={selectedSection.portfolio}>
                     PORTFOLIO
                 </div>
-                <HashLink smooth to='/#resume'>
+                <HashLink smooth to='/#resume' class={style.icon}>
                     <IoNewspaperSharp/>
                 </HashLink>   
                 <div className={style.description} style={selectedSection.resume}>
                     RESUME
                 </div>
-                <HashLink smooth to='/page#contact-me'>
+                <HashLink smooth to='/page#contact-me' class={style.icon}>
                     <AiOutlineMail/>
                 </HashLink>
                 <div className={style.description} style={selectedSection.contactMe}>

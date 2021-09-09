@@ -1,0 +1,81 @@
+@mixin divider() {
+    width: 100%;
+    height: 100%;
+    //overflow: hidden;
+    mask-repeat: repeat-x;
+    mask-size: contain;
+    position: absolute;
+    @media(max-width: 601px){
+        mask-size: cover;
+    }    
+}
+
+.container {
+    margin: 0;
+    aspect-ratio: 40/1;
+    position: relative;
+    @media(max-width: 40em) {
+        aspect-ratio: 10/1;
+    }
+    
+    .wave1{
+        @include divider();
+        mask-image: url('../assets/about-port/about-port-1.svg');
+        background-color: #fea443;
+        animation: waving 5s infinite;
+
+    }    
+    .wave2{
+        @include divider();
+        mask-image: url('../assets/about-port/about-port-2.svg');
+        background-color: #c3fe43;
+        animation: waving2 3s infinite;
+    }
+    .wave3{
+        @include divider();
+        mask-image: url('../assets/about-port/about-port-3.svg');
+        background-color: #c3fe43;
+        animation: waving3 10s infinite;
+    }
+}
+
+@keyframes waving {
+    0% {
+        mask-position-y: 0%;
+    }
+    50% {
+        mask-position-y: 50%;
+    }
+    100% {
+        mask-position-y: 0%;
+    }
+}
+@keyframes waving2 {
+    0% {
+        mask-position-y: 0%;
+       //mask-position-y: 0%;
+    }
+    50% {
+        mask-position-y: -50%;
+        //mask-position-y: 25%;
+    }
+    100% {
+        mask-position-y: 0%;
+        //mask-position-y: 0%;
+    }
+}      
+
+@keyframes waving3 {
+    0% {
+        mask-position-y: 0%;
+        //|mask-position-y: 0%;
+    }
+    50% {
+        mask-position-y: 200%;
+        //mask-position-y: 50%;
+    }
+    100% {
+        mask-position-y: 0%;
+        //mask-position-y: 0%;
+    }
+}      

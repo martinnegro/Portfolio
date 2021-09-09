@@ -1,8 +1,27 @@
+@mixin divider() {
+    aspect-ratio: 10/1;
+    width: 100%;
+    height: 0;
+    
+    background-repeat: no-repeat;
+    background-size:contain;
+    @media (max-width: 600px) {
+        aspect-ratio: 1;
+    }
+}
+
 .pageContainer{
     margin-left: 50px; 
+    
 
     display: flex;
     flex-direction: column;
 
-    background-color: black;
+
+    .aboutMe{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
 }
