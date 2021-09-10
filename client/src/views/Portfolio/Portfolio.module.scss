@@ -18,7 +18,7 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: center;
-        gap: 1rem;
+        
         overflow-x: scroll;
 
         &::-webkit-scrollbar {
@@ -29,6 +29,7 @@
 
         position: relative;
         scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
 
         @media (max-width: 600px) {
             width: 95%;

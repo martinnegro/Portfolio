@@ -41,44 +41,63 @@ function Portfolio() {
         setScrollSize(cardsContainer.scrollWidth);
         const { matches } = window.matchMedia('(max-width: 40em)')
         // Setea la cantidad de páginas
-        matches ?  setNumberOfPages(sites.length - 1 ) : setNumberOfPages(Math.ceil(sites.length / 2) - 1);
+        matches ?  setNumberOfPages(sites.length-1) : setNumberOfPages(Math.ceil(sites.length / 2)-1);
         // Setea el ancho de cada página
         if (scrollSize > 0 && numberOfPages > 0) setPageWidth(Math.floor(scrollSize / (numberOfPages + 1)))
     },[scrollSize,numberOfPages]);
 
-    const handleScroll = (value) => {
+    useEffect(()=>{
+        // Listener por si cambia el tamaño de viewport
+        const cardsContainer = document.getElementById('cards-container');
+        const setter = () => setScrollSize(cardsContainer.scrollWidth)
+        cardsContainer.addEventListener('scroll',setter)
+        return () => cardsContainer.removeEventListener('scroll',setter)
+    },[]);
+    
+    const handlePosition = (value) => {
         // Setea posición de página (de 0 a (numberOfPages - 1))
         if (scrollPos === 0) {
-            if(value === -1) return
-            else setScrollPos(scrollPos + value) 
+            if(value === -1) return;
+            return setScrollPos(scrollPos + value);
         } else if ( scrollPos === numberOfPages ) {
-            if(value ===  1) return 
-            else setScrollPos(scrollPos + value)
-        } else setScrollPos(scrollPos + value)
-    }
+            if(value ===  1) return; 
+            return setScrollPos(scrollPos + value);
+        } else if (value % 1 === 0) setScrollPos(scrollPos + value);
+        
+    };
 
-    useEffect(()=>{
-        // Watcher por si cambia el tamaño de viewport
+    useEffect(()=>{ 
         const cardsContainer = document.getElementById('cards-container');
-        cardsContainer.addEventListener('scroll',()=>{
-            setScrollSize(cardsContainer.scrollWidth)
-        });
-    },[]);
+        const setter = () => {
+            const position = cardsContainer.scrollLeft / pageWidth;
+            handlePosition(position)         
+        }
+        cardsContainer.addEventListener('scroll',setter)
+        return () => cardsContainer.removeEventListener('scroll',setter)
+    },[pageWidth])
+
 
     useEffect(()=>{
+        handleSetPage()
+    },[scrollPos, pageWidth]);
+
+    const handleSetPage = () => {
         const cardsContainer = document.getElementById('cards-container');
         cardsContainer.scrollLeft = scrollPos * pageWidth
-    },[scrollPos, pageWidth]);
+    };
     
 
     return (
         <div className={style.container}>
-            <IoIosArrowDropleftCircle 
+            {
+                !(scrollPos === 0) ? 
+                <IoIosArrowDropleftCircle 
                 className={style.arrow}
-                onClick={()=>handleScroll(-1)}
-                disabled={ scrollPos === 0 ? true : false }
+                onClick={()=>handlePosition(-1)}
+                style={ scrollPos === 0 ? { cursor: 'not-allowed' } : {} }
                 style={{left: '20px'}}
-            />
+                /> : null
+            }
             <div 
                 id="cards-container"
                 className={style.cardsContainer}                
@@ -95,14 +114,15 @@ function Portfolio() {
                 }
 
             </div>
-            
+                {
+                !(scrollPos === numberOfPages) ?
                 <IoIosArrowDroprightCircle 
                     className={style.arrow}
-                    onClick={()=>handleScroll(1)}
+                    onClick={()=>handlePosition(1)}
                     style={ scrollPos === numberOfPages ? { cursor: 'not-allowed' } : {} }
                     style={{right: '20px'}}
-               />
-           
+               /> : null
+                }
                 
         </div>
     )
