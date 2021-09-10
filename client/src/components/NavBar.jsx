@@ -36,7 +36,6 @@ const contactMeSection = {
 
 function NavBar() {
     const [   selectedSection, setSelectedSection   ] = useState(initSection);
-    const [ previousScrollPos, setPreviousScrollPos ] = useState(0);
 
     useEffect(()=>{
         setSelectedSection(initSection);
@@ -65,7 +64,7 @@ function NavBar() {
                     <MdPersonPin/>
                 </HashLink>
                 <div className={style.description} style={selectedSection.aboutMe}>
-                    ABOUTME
+                    ABOUT ME
                 </div>
                 <HashLink smooth to='/#portfolio' class={style.icon}>
                     <BsFolder />
@@ -83,7 +82,7 @@ function NavBar() {
                     <AiOutlineMail/>
                 </HashLink>
                 <div className={style.description} style={selectedSection.contactMe}>
-                    CONTACTME
+                    CONTACT ME
                 </div>
         </div>
         </div>        

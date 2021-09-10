@@ -1,15 +1,37 @@
 .container {
     width: 100%;
-    height: 50%;
+    height: 45%;
+    margin: 5px;
+
+    @media (max-width: 40em) {
+        width: 95%;
+        height: 100%;
+    };
+
+    border-radius: 3px;
+    box-shadow: 0 0 3px #812F33;
     
-    border: 1px solid red;
+    background-color: hsl(53, 100%, 90%);
 
-    background-size: cover;
-    background-position: center;
-
-    h2 {
-        margin: 0;
-        padding: 0;
-        color: white    
+    display: flex;
+    @media (max-width: 40em) {
+        flex-direction: column;
     }
+
+    .infoContainer{
+        h2 {
+            margin: 0;
+            padding: 0;
+            color: white    
+        }
+    }
+        img {
+            width: 40%;
+            height: auto;
+            
+            @media (max-width: 40em) {
+                width: 100%;
+                
+            };
+        }
 }

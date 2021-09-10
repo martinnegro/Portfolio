@@ -5,23 +5,23 @@ import ContactMe from '../views/ContactMe'
 import Portfolio from '../views/Portfolio/Portfolio'
 import Resume from '../views/Resume'
 import style from './Page.module.scss'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setOffsetY } from '../redux/actions';
 
 
 function Page() {
     const dispatch = useDispatch();
-    const offsetY = useSelector(state => state);
+    // const offsetY = useSelector(state => state);
     const handleScroll = () => dispatch(setOffsetY(window.pageYOffset));
 
 
     useEffect(()=>{
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    },[]);
+    },[handleScroll]);
 
     return (
-        <div class={style.pageContainer}>
+        <div className={style.pageContainer}>
             <section id='about-me'>
                 <AboutMe/>
                 <Waves 
