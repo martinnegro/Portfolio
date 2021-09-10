@@ -34,7 +34,7 @@ function Portfolio() {
     const [       pageWidth, setPageWidth     ] = useState(0);
     const [     currentPage, setCurrentPage   ] = useState(0);
     const [   numberOfPages, setNumberOfPages ] = useState(0);
-    const [       scrollPos, setScrollPos     ] = useState(0);
+    const [       actualPos, setActualPos     ] = useState(0);
     
 
     useEffect(()=>{
@@ -56,52 +56,35 @@ function Portfolio() {
         return () => cardsContainer.removeEventListener('scroll',setter)
     },[]);
     useEffect(()=>{
-        // Listener de la posición
         const cardsContainer = document.getElementById('cards-container');
-        const setter = () => pageWidth > 0 && setScrollPos(cardsContainer.scrollLeft / pageWidth)
+        const setter = (e) => { 
+                const position = pageWidth > 0 && cardsContainer.scrollLeft / pageWidth;
+                setActualPos(Math.round(position))
+            }
         cardsContainer.addEventListener('scroll',setter)
         return () => cardsContainer.removeEventListener('scroll',setter)
-    },[pageWidth,scrollPos]);
+    },[pageWidth])  
 
-    
+    useEffect(()=>{
+        if(actualPos !== currentPage) setCurrentPage(actualPos)
+    },[actualPos,currentPage])
     
     const handlePosition = (value) => {
         // Setea posición de página (de 0 a (numberOfPages - 1))
-        if (value === 0) return setCurrentPage(0)
         if (currentPage === 0) {
-            if(value === -1) return;
             return setCurrentPage(currentPage + value);
         } else if ( currentPage === numberOfPages ) {
-            if(value ===  1) return; 
             return setCurrentPage(currentPage + value);
         } else if (value % 1 === 0) setCurrentPage(currentPage + value);
-        
     };
-
-    let prevPos = 0;
-    useEffect(()=>{ 
-        const cardsContainer = document.getElementById('cards-container');
-        const setter = async () => {
-            const position = pageWidth > 0 && cardsContainer.scrollLeft / pageWidth;
-            console.log('currentPage: ',currentPage)
-            console.log('position: ',position)
-            console.log('prevPos: ',prevPos)
-            if ( position > prevPos && position > currentPage + .5) setCurrentPage(currentPage + 1)
-            if ( position < prevPos && position < currentPage - .5) setCurrentPage(currentPage - 1)
-            return prevPos = position;
-        }
-        cardsContainer.addEventListener('scroll',setter)
-        return () => cardsContainer.removeEventListener('scroll',setter)
-    },[pageWidth])
-
 
     useEffect(()=>{
         handleSetPage()
-    },[currentPage, pageWidth]);
+    },[currentPage,pageWidth,actualPos]);
 
     const handleSetPage = () => {
         const cardsContainer = document.getElementById('cards-container');
-        cardsContainer.scrollLeft = currentPage * pageWidth
+        cardsContainer.scrollLeft = currentPage * pageWidth;
     };
     
 
