@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PortfolioCards from './components/PortfolioCards';
 import style from './Portfolio.module.scss';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
+import { IoIosArrowDropleft, IoIosArrowDropleftCircle, IoIosArrowDroprightCircle, IoIosArrowDropright } from 'react-icons/io'
 
 const sites = [
     {
@@ -32,46 +33,52 @@ function Portfolio() {
     const [    scrollSize, setScrollSize    ] = useState(0);
     const [     pageWidth, setPageWidth     ] = useState(0);
     const [     scrollPos, setScrollPos     ] = useState(0);
-    const [ positionWidth, setPositionWidth ] = useState(0);
+    const [ numberOfPages, setNumberOfPages ] = useState(0);
 
     useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');        
+        // Ancho total del contenedor:
         setScrollSize(cardsContainer.scrollWidth);
         const { matches } = window.matchMedia('(max-width: 40em)')
-        matches ?  setPositionWidth(sites.length - 1 ) : setPositionWidth(Math.ceil(sites.length / 2) - 1);
-        if (scrollSize > 0 && positionWidth > 0) setPageWidth(Math.floor(scrollSize / (positionWidth + 1)))
-    },[scrollSize,positionWidth]);
+        // Setea la cantidad de páginas
+        matches ?  setNumberOfPages(sites.length - 1 ) : setNumberOfPages(Math.ceil(sites.length / 2) - 1);
+        // Setea el ancho de cada página
+        if (scrollSize > 0 && numberOfPages > 0) setPageWidth(Math.floor(scrollSize / (numberOfPages + 1)))
+    },[scrollSize,numberOfPages]);
 
     const handleScroll = (value) => {
+        // Setea posición de página (de 0 a (numberOfPages - 1))
         if (scrollPos === 0) {
             if(value === -1) return
             else setScrollPos(scrollPos + value) 
-        } else if ( scrollPos === positionWidth ) {
+        } else if ( scrollPos === numberOfPages ) {
             if(value ===  1) return 
             else setScrollPos(scrollPos + value)
         } else setScrollPos(scrollPos + value)
     }
 
     useEffect(()=>{
+        // Watcher por si cambia el tamaño de viewport
+        const cardsContainer = document.getElementById('cards-container');
+        cardsContainer.addEventListener('scroll',()=>{
+            setScrollSize(cardsContainer.scrollWidth)
+        });
+    },[]);
+
+    useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');
         cardsContainer.scrollLeft = scrollPos * pageWidth
-        console.log('width: ',cardsContainer.scrollWidth);
-        console.log('left:',cardsContainer.scrollLeft)
     },[scrollPos, pageWidth]);
     
 
     return (
         <div className={style.container}>
-            <div
-                className={style.arrowContainer}
+            <IoIosArrowDropleftCircle 
+                className={style.arrow}
                 onClick={()=>handleScroll(-1)}
-                style={ scrollPos === 0 ? { cursor: 'not-allowed' } : {} }
+                disabled={ scrollPos === 0 ? true : false }
                 style={{left: '20px'}}
-            >
-                <RiArrowLeftSLine 
-                    className={style.arrow}
-                />
-            </div>   
+            />
             <div 
                 id="cards-container"
                 className={style.cardsContainer}                
@@ -88,17 +95,14 @@ function Portfolio() {
                 }
 
             </div>
-            <div 
-                value='1'
-                className={style.arrowContainer}
-                style={ scrollPos === positionWidth ? { cursor: 'not-allowed' } : {} }
-                style={{right: '20px'}}
-            >
-                <RiArrowRightSLine 
+            
+                <IoIosArrowDroprightCircle 
                     className={style.arrow}
                     onClick={()=>handleScroll(1)}
-                />
-            </div>
+                    style={ scrollPos === numberOfPages ? { cursor: 'not-allowed' } : {} }
+                    style={{right: '20px'}}
+               />
+           
                 
         </div>
     )

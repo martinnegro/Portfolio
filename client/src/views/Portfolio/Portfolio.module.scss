@@ -40,32 +40,26 @@
     }
 
 
-    .arrowContainer{
-        margin: 0 1rem 0 1rem;
-        
+    .arrow{
+        opacity: 0.5;
+        margin: 0 1rem 0 1rem;      
         border-radius: 50%;
         cursor: pointer;
         border: none;
-
-        height: clamp(3rem,10vw, 7rem);
-        width: clamp(3rem,10vw, 7rem);
-        
-        background-color: rgb(191, 191, 191, 0.5);
-        z-index: 100;
-
+        font-size: clamp(3rem,10vw, 7rem);
+        z-index: 500;
+        transition: all 0.2s;
         &:hover {
-            background-color: rgb(191, 191, 191, 0.90);
+            opacity: 0.75;
+            color: #812F33; 
         }
-        
-        .arrow{
-            font-size: clamp(3rem,10vw, 7rem);
-            opacity: 1;
-            
+        &:active {
+            transform: scale(0.9);
         }
 
         @media (max-width: 600px) {
             position: absolute;
         }
-        
+    
     }   
 }
