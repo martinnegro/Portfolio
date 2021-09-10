@@ -33,9 +33,7 @@ function Portfolio() {
     const [      scrollSize, setScrollSize    ] = useState(0);
     const [       pageWidth, setPageWidth     ] = useState(0);
     const [     currentPage, setCurrentPage   ] = useState(0);
-    const [   numberOfPages, setNumberOfPages ] = useState(0);
-    const [       actualPos, setActualPos     ] = useState(0);
-    
+    const [   numberOfPages, setNumberOfPages ] = useState(0);   
 
     useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');        
@@ -59,34 +57,20 @@ function Portfolio() {
         const cardsContainer = document.getElementById('cards-container');
         const setter = (e) => { 
                 const position = pageWidth > 0 && cardsContainer.scrollLeft / pageWidth;
-                setActualPos(Math.round(position))
+                const actualPos = Math.round(position);
+                if (actualPos !== currentPage) setCurrentPage(actualPos);
             }
         cardsContainer.addEventListener('scroll',setter)
         return () => cardsContainer.removeEventListener('scroll',setter)
     },[pageWidth])  
-
-    useEffect(()=>{
-        if(actualPos !== currentPage) setCurrentPage(actualPos)
-    },[actualPos,currentPage])
     
     const handlePosition = (value) => {
         // Setea posición de página (de 0 a (numberOfPages - 1))
-        if (currentPage === 0) {
-            return setCurrentPage(currentPage + value);
-        } else if ( currentPage === numberOfPages ) {
-            return setCurrentPage(currentPage + value);
-        } else if (value % 1 === 0) setCurrentPage(currentPage + value);
-    };
-
-    useEffect(()=>{
-        handleSetPage()
-    },[currentPage,pageWidth,actualPos]);
-
-    const handleSetPage = () => {
         const cardsContainer = document.getElementById('cards-container');
-        cardsContainer.scrollLeft = currentPage * pageWidth;
+        cardsContainer.scrollLeft = (currentPage + value)* pageWidth;
+        setCurrentPage(currentPage + value )
     };
-    
+
 
     return (
         <div className={style.container}>

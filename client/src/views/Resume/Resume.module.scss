@@ -1,6 +1,6 @@
 .container{
     padding: 5%;
-    height: 100%;
+    height: 90%;
     .link {
         font-family: 'Alfa Slab One', cursive;
         color: #812F33;
@@ -14,10 +14,10 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        
+        align-items: center;
         height: 100%;
         @media (max-width: 40em){
-        overflow-x: scroll;
+            overflow-x: scroll;
         }
         .subInfo {
             width: 50%;
