@@ -48,6 +48,8 @@
         cursor: pointer;
         border: none;
         font-size: clamp(3rem,10vw, 7rem);
+        height: clamp(3rem,10vw, 7rem);
+        width: clamp(3rem,10vw, 7rem);
         z-index: 500;
         transition: all 0.2s;
         &:hover {
@@ -62,5 +64,10 @@
             position: absolute;
         }
     
-    }   
+    }
+    .emptyArrow {
+        margin: 0 1rem 0 1rem; 
+        height: clamp(3rem,10vw, 7rem);
+        width: clamp(3rem,10vw, 7rem);
+    }
 }

@@ -30,10 +30,12 @@ const sites = [
 ];
 
 function Portfolio() {
-    const [    scrollSize, setScrollSize    ] = useState(0);
-    const [     pageWidth, setPageWidth     ] = useState(0);
-    const [     scrollPos, setScrollPos     ] = useState(0);
-    const [ numberOfPages, setNumberOfPages ] = useState(0);
+    const [      scrollSize, setScrollSize    ] = useState(0);
+    const [       pageWidth, setPageWidth     ] = useState(0);
+    const [     currentPage, setCurrentPage   ] = useState(0);
+    const [   numberOfPages, setNumberOfPages ] = useState(0);
+    const [       scrollPos, setScrollPos     ] = useState(0);
+    
 
     useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');        
@@ -53,24 +55,40 @@ function Portfolio() {
         cardsContainer.addEventListener('scroll',setter)
         return () => cardsContainer.removeEventListener('scroll',setter)
     },[]);
+    useEffect(()=>{
+        // Listener de la posición
+        const cardsContainer = document.getElementById('cards-container');
+        const setter = () => pageWidth > 0 && setScrollPos(cardsContainer.scrollLeft / pageWidth)
+        cardsContainer.addEventListener('scroll',setter)
+        return () => cardsContainer.removeEventListener('scroll',setter)
+    },[pageWidth,scrollPos]);
+
+    
     
     const handlePosition = (value) => {
         // Setea posición de página (de 0 a (numberOfPages - 1))
-        if (scrollPos === 0) {
+        if (value === 0) return setCurrentPage(0)
+        if (currentPage === 0) {
             if(value === -1) return;
-            return setScrollPos(scrollPos + value);
-        } else if ( scrollPos === numberOfPages ) {
+            return setCurrentPage(currentPage + value);
+        } else if ( currentPage === numberOfPages ) {
             if(value ===  1) return; 
-            return setScrollPos(scrollPos + value);
-        } else if (value % 1 === 0) setScrollPos(scrollPos + value);
+            return setCurrentPage(currentPage + value);
+        } else if (value % 1 === 0) setCurrentPage(currentPage + value);
         
     };
 
+    let prevPos = 0;
     useEffect(()=>{ 
         const cardsContainer = document.getElementById('cards-container');
-        const setter = () => {
-            const position = cardsContainer.scrollLeft / pageWidth;
-            handlePosition(position)         
+        const setter = async () => {
+            const position = pageWidth > 0 && cardsContainer.scrollLeft / pageWidth;
+            console.log('currentPage: ',currentPage)
+            console.log('position: ',position)
+            console.log('prevPos: ',prevPos)
+            if ( position > prevPos && position > currentPage + .5) setCurrentPage(currentPage + 1)
+            if ( position < prevPos && position < currentPage - .5) setCurrentPage(currentPage - 1)
+            return prevPos = position;
         }
         cardsContainer.addEventListener('scroll',setter)
         return () => cardsContainer.removeEventListener('scroll',setter)
@@ -79,24 +97,23 @@ function Portfolio() {
 
     useEffect(()=>{
         handleSetPage()
-    },[scrollPos, pageWidth]);
+    },[currentPage, pageWidth]);
 
     const handleSetPage = () => {
         const cardsContainer = document.getElementById('cards-container');
-        cardsContainer.scrollLeft = scrollPos * pageWidth
+        cardsContainer.scrollLeft = currentPage * pageWidth
     };
     
 
     return (
         <div className={style.container}>
             {
-                !(scrollPos === 0) ? 
+                !(currentPage === 0) ? 
                 <IoIosArrowDropleftCircle 
                 className={style.arrow}
                 onClick={()=>handlePosition(-1)}
-                style={ scrollPos === 0 ? { cursor: 'not-allowed' } : {} }
                 style={{left: '20px'}}
-                /> : null
+                /> : <div className={style.emptyArrow}></div>
             }
             <div 
                 id="cards-container"
@@ -115,13 +132,12 @@ function Portfolio() {
 
             </div>
                 {
-                !(scrollPos === numberOfPages) ?
+                !(currentPage === numberOfPages) ?
                 <IoIosArrowDroprightCircle 
                     className={style.arrow}
                     onClick={()=>handlePosition(1)}
-                    style={ scrollPos === numberOfPages ? { cursor: 'not-allowed' } : {} }
                     style={{right: '20px'}}
-               /> : null
+               /> : <div className={style.emptyArrow}></div>
                 }
                 
         </div>

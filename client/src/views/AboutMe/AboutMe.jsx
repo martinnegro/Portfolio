@@ -10,6 +10,9 @@ function AboutMe() {
             <p>
                 Full Stack Web Developer
             </p>
+            <p>
+                (portfolio under construction :D)
+            </p>
             
         </div>
     )

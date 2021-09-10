@@ -1,0 +1,28 @@
+.container{
+    padding: 5%;
+    .link {
+        font-family: 'Alfa Slab One', cursive;
+        color: #812F33;
+        transition: all 0.2;
+        &:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 1px #812F33;
+        }
+    }
+    .infoContainer {
+        h2 {
+            font-family: 'Alfa Slab One', cursive;
+        color: #812F33;
+        }
+        p {
+            color: hsl(53, 100%, 90%);
+        }
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        .subInfo {
+            width: 50%;
+        }
+    }
+}

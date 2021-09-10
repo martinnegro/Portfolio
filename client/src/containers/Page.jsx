@@ -3,7 +3,7 @@ import Waves from '../components/Waves'
 import AboutMe from '../views/AboutMe/AboutMe'
 import ContactMe from '../views/ContactMe'
 import Portfolio from '../views/Portfolio/Portfolio'
-import Resume from '../views/Resume'
+import Resume from '../views/Resume/Resume'
 import style from './Page.module.scss'
 import { useDispatch } from 'react-redux';
 import { setOffsetY } from '../redux/actions';
