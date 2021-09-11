@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PortfolioCards from './components/PortfolioCards';
 import style from './Portfolio.module.scss';
-import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
-import { IoIosArrowDropleft, IoIosArrowDropleftCircle, IoIosArrowDroprightCircle, IoIosArrowDropright } from 'react-icons/io'
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io'
 
 const sites = [
     {
@@ -32,8 +31,9 @@ const sites = [
 function Portfolio() {
     const [      scrollSize, setScrollSize    ] = useState(0);
     const [       pageWidth, setPageWidth     ] = useState(0);
-    const [     currentPage, setCurrentPage   ] = useState(0);
     const [   numberOfPages, setNumberOfPages ] = useState(0);   
+    const [     currentPage, setCurrentPage   ] = useState(0);
+    const [       actualPos, setActualPos     ] = useState(0);
 
     useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');        
@@ -57,20 +57,21 @@ function Portfolio() {
         const cardsContainer = document.getElementById('cards-container');
         const setter = (e) => { 
                 const position = pageWidth > 0 && cardsContainer.scrollLeft / pageWidth;
-                const actualPos = Math.round(position);
-                if (actualPos !== currentPage) setCurrentPage(actualPos);
+                return setActualPos(Math.round(position))
             }
         cardsContainer.addEventListener('scroll',setter)
         return () => cardsContainer.removeEventListener('scroll',setter)
-    },[pageWidth])  
+    },[pageWidth]);
+    
+    useEffect(()=>{
+        if (actualPos !== currentPage) setCurrentPage(actualPos)
+    },[actualPos,currentPage]);
     
     const handlePosition = (value) => {
-        // Setea posición de página (de 0 a (numberOfPages - 1))
         const cardsContainer = document.getElementById('cards-container');
-        cardsContainer.scrollLeft = (currentPage + value)* pageWidth;
+        cardsContainer.scrollLeft = (currentPage + value) * pageWidth;
         setCurrentPage(currentPage + value )
     };
-
 
     return (
         <div className={style.container}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Waves from '../components/Waves'
 import AboutMe from '../views/AboutMe/AboutMe'
 import ContactMe from '../views/ContactMe'
@@ -12,7 +12,7 @@ import { setOffsetY } from '../redux/actions';
 function Page() {
     const dispatch = useDispatch();
     // const offsetY = useSelector(state => state);
-    const handleScroll = () => dispatch(setOffsetY(window.pageYOffset));
+    const handleScroll = useCallback(() => dispatch(setOffsetY(window.pageYOffset)),[dispatch])
 
 
     useEffect(()=>{
