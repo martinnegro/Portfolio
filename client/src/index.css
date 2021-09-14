@@ -2,6 +2,7 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,25 +35,4 @@ section {
 
 #contact-me {
   background-color: #A5AAA3;
-}
-
-.custom-shape-divider-bottom-1630979105 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1630979105 svg {
-  position: relative;
-  display: block;
-  width: calc(150% + 1.3px);
-  height: 113px;
-}
-
-.custom-shape-divider-bottom-1630979105 .shape-fill {
-  fill: #FEA443;
 }

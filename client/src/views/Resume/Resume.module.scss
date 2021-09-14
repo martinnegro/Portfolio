@@ -2,19 +2,16 @@
     padding: 2.5%;
     height: 90%;
     box-sizing: border-box;
-    .link {
+    
+    a {
         font-family: 'Alfa Slab One', cursive;
-        color: #812F33;
+        color: hsl(53, 100%, 90%);    
         transition: all 0.2;
         margin: 0;
         text-decoration: none;
         transition: all 0.3s;
-        width: 100%;
-        &:hover {
-            
-            text-shadow: 0 0 5px hsl(53, 100%, 90%);
-        }
         h1{
+            width: fit-content;
             font-size: 3rem;
             border-bottom: 5px solid #812F33;
             margin: 0;

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import Waves from '../components/Waves'
 import AboutMe from '../views/AboutMe/AboutMe'
-import ContactMe from '../views/ContactMe'
+import ContactMe from '../views/ContactMe/ContactMe'
 import Portfolio from '../views/Portfolio/Portfolio'
 import Resume from '../views/Resume/Resume'
 import style from './Page.module.scss'
