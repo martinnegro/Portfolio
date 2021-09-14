@@ -1,9 +1,12 @@
 @mixin divider() {
     width: 100%;
     height: 100%;
+    
     //overflow: hidden;
     mask-repeat: repeat-x;
-    mask-size: contain;
+    mask-size: cover;
+    -webkit-mask-repeat: repeat-x;
+    -webkit-mask-size: cover;
     position: absolute;
     @media(max-width: 601px){
         mask-size: cover;
@@ -12,7 +15,9 @@
 
 .container {
     margin: 0;
-    aspect-ratio: 40/1;
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
     position: relative;
     @media(max-width: 40em) {
         aspect-ratio: 10/1;
@@ -23,7 +28,6 @@
         mask-image: url('../assets/about-port/about-port-1.svg');
         background-color: #fea443;
         animation: waving 5s infinite;
-
     }    
     .wave2{
         @include divider();

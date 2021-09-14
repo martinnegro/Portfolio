@@ -1,37 +1,40 @@
 
 .container {
-    height: 90%;
+    height: 85%;
     margin: 0;
-    padding: clamp(0.1rem, 2.5vw, 3rem);
+    padding-inline: clamp(0.1rem, 2.5vw, 3rem);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    box-sizing: border-box;
     @media (max-width: 600px) {
         padding: 0;
+        height: 90%;
     }
     .cardsContainer {
-        padding: 10px;
+        padding: 5px;
         height: 100%;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: center;
-        
+        gap: 10px;
         overflow-x: scroll;
+
 
         &::-webkit-scrollbar {
             display: none;
-          }       
+        }       
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
 
         position: relative;
         scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
 
-        @media (max-width: 600px) {
+        @media (max-width: 40em) {
             width: 95%;
             position: absolute;
             padding: 5px;
@@ -47,9 +50,9 @@
         border-radius: 50%;
         cursor: pointer;
         border: none;
-        font-size: clamp(3rem,10vw, 7rem);
-        height: clamp(3rem,10vw, 7rem);
-        width: clamp(3rem,10vw, 7rem);
+        font-size: clamp(3rem,4rem, 5rem);
+        height: clamp(3rem,4rem, 5rem);
+        width: clamp(3rem,4rem, 5rem);
         z-index: 500;
         transition: all 0.2s;
         &:hover {
@@ -60,14 +63,17 @@
             transform: scale(0.9);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 40em) {
             position: absolute;
         }
     
     }
     .emptyArrow {
         margin: 0 1rem 0 1rem; 
-        height: clamp(3rem,10vw, 7rem);
-        width: clamp(3rem,10vw, 7rem);
+        height: clamp(3rem,4rem,5rem);
+        width: clamp(3rem,4rem,5rem);
+        @media (max-width: 40em) {
+            position: absolute;
+        }
     }
 }

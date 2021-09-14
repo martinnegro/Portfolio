@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PortfolioCards from './components/PortfolioCards';
 import style from './Portfolio.module.scss';
-import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io'
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
 
 const sites = [
     {
@@ -33,7 +33,7 @@ function Portfolio() {
     const [       pageWidth, setPageWidth     ] = useState(0);
     const [   numberOfPages, setNumberOfPages ] = useState(0);   
     const [     currentPage, setCurrentPage   ] = useState(0);
-    const [       actualPos, setActualPos     ] = useState(0);
+    const [       actualPage, setActualPage   ] = useState(0);
 
     useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');        
@@ -49,25 +49,28 @@ function Portfolio() {
     useEffect(()=>{
         // Listener por si cambia el tamaño de viewport
         const cardsContainer = document.getElementById('cards-container');
-        const setter = () => setScrollSize(cardsContainer.scrollWidth)
-        cardsContainer.addEventListener('scroll',setter)
+        const setter = () => setScrollSize(cardsContainer.scrollWidth);
+        cardsContainer.addEventListener('scroll',setter);
         return () => cardsContainer.removeEventListener('scroll',setter)
     },[]);
     useEffect(()=>{
+        // Listener de la posición real del Scroll. Redondea para medirlo en pages.
         const cardsContainer = document.getElementById('cards-container');
-        const setter = (e) => { 
+        const setter = () => { 
                 const position = pageWidth > 0 && cardsContainer.scrollLeft / pageWidth;
-                return setActualPos(Math.round(position))
+                return setActualPage(Math.round(position));                
             }
         cardsContainer.addEventListener('scroll',setter)
         return () => cardsContainer.removeEventListener('scroll',setter)
     },[pageWidth]);
     
     useEffect(()=>{
-        if (actualPos !== currentPage) setCurrentPage(actualPos)
-    },[actualPos,currentPage]);
+        // Si cambia la posición real, cambia la página actual.
+        if (actualPage !== currentPage) setCurrentPage(actualPage)
+    },[actualPage,currentPage]);
     
     const handlePosition = (value) => {
+        // Handler de los botones para cambio de página
         const cardsContainer = document.getElementById('cards-container');
         cardsContainer.scrollLeft = (currentPage + value) * pageWidth;
         setCurrentPage(currentPage + value )
