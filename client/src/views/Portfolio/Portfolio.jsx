@@ -6,18 +6,17 @@ import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons
 const sites = [
     {
         site_name: 'WheatherApp',
-        site_description: "One of my first projects as a Full Stack Dev student.",
+        site_description: "One of my first projects as a Full Stack Dev student. Made with React. Use of OpenWeatherMap and OpenStreetMap APIs.",
         site_image: "https://i.ibb.co/cxcTLrT/screenshot1.png",
         site_link: 'https://martinnegro-weatherapp.netlify.app'
     },{
         site_name: 'Psitesis',
-        site_description: 'En Psitesis encontrarás ARTICULOS escritos por COLABORADORES expertos en la contrucción de tesis.\
-                            Si seguís con dudas podés escribir en el FORO, donde encontrarás otros colegas que puedan ayudarte.',
+        site_description: 'Blog and Forum for psychology students. Made with React, Redux and Material UI. API develop with Express JS, Sequelize and Postgres. The site has an admin panel for CRUD actions.\nDeveloped as a team over the course of 4 weeks. ',
         site_image: "https://i.postimg.cc/Zqyn2HYn/screenshot.png",
         site_link: 'https://psitesis.netlify.app'
     },{
-        site_name: 'Videogames',
-        site_description: '',
+        site_name: 'Videogames Repository',
+        site_description: 'Individual Project. Made with React, Redux and pure SASS for the front. Use of rawg.io API. Has a backend with database for the creation of new games. Filter, pagination, forms and alerts development.',
         site_image: 'https://raw.githubusercontent.com/martinnegro/martinnegro/main/screenshots/Videogames.png',
         site_link: '143.198.58.101/'
     },
