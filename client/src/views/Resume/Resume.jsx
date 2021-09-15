@@ -55,13 +55,15 @@ function Resume() {
 
     return (
         <div className={style.container}>
+            <h1>
                 <a 
                     href='https://drive.google.com/uc?export=download&id=1uvJ2_fdwL1SUJosFYdVqK01S7BXh0sbw' 
                     download
                     className={style.link}
                 >
-                    <h1>Download</h1>
+                    Download
                 </a>
+            </h1>
             <div className={style.displayInfo}>
                 {
                     arePages && currentPage > 0 ?

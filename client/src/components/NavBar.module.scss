@@ -10,11 +10,12 @@
 }
 
 .navContainer {
-    height: 385px;
+    height: 400px;
     width: 50px;
     
     margin: auto 0 auto 0;
 
+    font-family: 'Source Code Pro', monospace;;
     
     display: flex;
     flex-direction: column;
@@ -29,12 +30,16 @@
     
     .icon{
         width: 100%;
+        
         background-color: hsl(357, 47%, 50%);
 
         color: rgb(26, 26, 26);
-        text-align: center;
-
+        box-sizing: border-box;
         transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-block: 10px ;
         &:hover {
             color: rgb(192, 192, 192);
         }
@@ -44,15 +49,26 @@
     .description {
         width: 100%;
 
-        text-align: center;
+        
         
         color: rgb(26, 26, 26);
         writing-mode: vertical-lr;
         transform: rotate(180deg);
+        text-overflow: inherit;
         overflow: hidden;
         transition: height 0.5s ease-out;
     
-        background-color: hsl(357, 47%, 75%)
+        background-color: hsl(357, 47%, 75%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        p {
+            margin: 0;
+            text-align: center;
+        }
     }
 }
 

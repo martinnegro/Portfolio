@@ -64,25 +64,33 @@ function NavBar() {
                     <MdPersonPin/>
                 </HashLink>
                 <div className={style.description} style={selectedSection.aboutMe}>
-                    ABOUT ME
+                    <p>
+                    ABOUT_ME
+                    </p>
                 </div>
                 <HashLink smooth to='/#portfolio' class={style.icon}>
                     <BsFolder />
                 </HashLink>            
                 <div className={style.description} style={selectedSection.portfolio}>
+                    <p>
                     PORTFOLIO
+                    </p>
                 </div>
                 <HashLink smooth to='/#resume' class={style.icon}>
                     <IoNewspaperSharp/>
                 </HashLink>   
                 <div className={style.description} style={selectedSection.resume}>
+                    <p>
                     RESUME
+                    </p>
                 </div>
                 <HashLink smooth to='/page#contact-me' class={style.icon}>
                     <AiOutlineMail/>
                 </HashLink>
                 <div className={style.description} style={selectedSection.contactMe}>
-                    CONTACT ME
+                    <p>
+                    CONTACT_ME
+                    </p>
                 </div>
         </div>
         </div>        

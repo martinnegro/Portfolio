@@ -2,20 +2,17 @@
     padding: 2.5%;
     height: 90%;
     box-sizing: border-box;
-    
     a {
-        font-family: 'Alfa Slab One', cursive;
-        color: hsl(53, 100%, 90%);    
-        transition: all 0.2;
-        margin: 0;
-        text-decoration: none;
-        transition: all 0.3s;
-        h1{
-            width: fit-content;
-            font-size: 3rem;
-            border-bottom: 5px solid #812F33;
-            margin: 0;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 2.5rem;
+        color: hsl(53, 100%, 90%);
+        border-bottom: 3px solid hsl(53, 100%, 90%);
+        text-decoration: none;                
+        transition: all 0.2s;
+        &:hover {
+            transform: scale(1.1);
         }
+        
     }
     p {
         font-size: clamp(1rem, 1rem, 2rem);
@@ -23,7 +20,7 @@
 
     }   
     h2 {
-        font-family: 'Alfa Slab One', cursive;
+        font-family: 'Source Code Pro', monospace;
         color: #913c40;
         margin: 0;
     }
@@ -67,7 +64,7 @@
                 box-sizing: border-box;
                 width: 100%;
                 padding: 1%;
-                border-radius: 3px;
+                
                 box-shadow: 0 0 3px #812F33;
                 background-color: hsl(53, 100%, 90%);
                 @media (max-width: 40em){

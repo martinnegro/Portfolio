@@ -18,14 +18,15 @@ const sites = [
     },{
         site_name: 'Videogames',
         site_description: '',
-        site_image: '',
-        site_link: ''
-    },{
-        site_name: 'WheatherApp',
-        site_description: '',
-        site_image: '',
-        site_link: ''
-    }
+        site_image: 'https://raw.githubusercontent.com/martinnegro/martinnegro/main/screenshots/Videogames.png',
+        site_link: '143.198.58.101/'
+    },
+    //  {
+    //     site_name: 'WheatherApp',
+    //     site_description: '',
+    //     site_image: '',
+    //     site_link: ''
+    // }
 ];
 
 function Portfolio() {

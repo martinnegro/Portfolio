@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
 .container {
-    padding: 10% 0 0 10%;
+    text-align: center;
     height: 90%;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
     h1 {
-        margin: 0;
-        
-        font-family: 'Alfa Slab One', cursive;
-        font-size: clamp(3rem, 10vw, 6rem);
-
-        
+        margin: 10% 0 0 10%;
+        text-align: start;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 6rem;
+        overflow-wrap: break-word;
         background-color: #f3ec78;
         background-image: linear-gradient(308deg, #f5540a 25%, #931C1C 74%);
         background-size: 100%;
@@ -19,10 +23,28 @@
         -webkit-text-fill-color: transparent; 
         -moz-text-fill-color: transparent;
         
-        //text-shadow: 0px 5px 5px black;
+        @media (max-width: 40em) {
+            font-size: 2rem;
+        }
+    }
+    .objectContainer{
+        box-sizing: border-box;
+        background-image: linear-gradient(308deg, #ac3434 25%, #812F33 74%);
+        text-align: start;
+        width: 100%;
+        padding: 0 0 0 10%;
+        p {
+            color: #fff9cc;
+            margin: 0;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 2rem;
+            overflow-wrap: break-word;
+            @media (max-width: 40em) {
+                font-size: 1rem;
+            }
+        }
     }
     p {
-        margin: 0;
-        font-size: clamp(1.5rem, 10vw, 3rem);
+        font-family: 'Source Code Pro', monospace;
     }
 }

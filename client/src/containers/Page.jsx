@@ -26,24 +26,24 @@ function Page() {
                 <AboutMe/>
                 <Waves 
                     color1='#febc76'
-                    color2='#8bde17'
-                    color3='#f3e408'
+                    color2='#FFD68F'
+                    color3='#FFEEB7'
                 />
             </section>
             <section id='portfolio'>
                 <Portfolio/>
                 <Waves 
                     color1='#86708f'
-                    color2='#8bde17'
-                    color3='#f3e408'
+                    color2='#B88F9B'
+                    color3='#EBB28A'
                 />
             </section>
             <section id='resume'>
                 <Resume />
                 <Waves 
                     color1='#A5AAA3'
-                    color2='#8bde17'
-                    color3='#f3e408'
+                    color2='#9B9BA2'
+                    color3='#978CA1'
                 />
                 
             </section>

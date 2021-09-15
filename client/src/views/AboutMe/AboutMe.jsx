@@ -5,15 +5,28 @@ function AboutMe() {
     return (
         <div className={style.container}>
             <h1>
-                I'm Martín Negro
+                const Martin_Negro =
             </h1>
-            <p>
-                Full Stack Web Developer
-            </p>
-            <p>
-                (portfolio under construction :D)
-            </p>
-            
+            <div className={style.objectContainer}>
+                <p>
+                    {`{`}
+                </p>
+                <p>
+                &emsp;&emsp;front_end: true,
+                </p>
+                <p>
+                &emsp;&emsp; back_end: true,
+                </p>
+                <p>
+                &emsp;&emsp; location: 'Versalles, Buenos Aires, Argentina',
+                </p>
+                <p>
+                    {`}`}
+                </p>
+            </div>
+                <p>
+                    Scroll down for more!
+                </p>
         </div>
     )
 }
