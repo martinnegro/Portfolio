@@ -18,7 +18,7 @@ const sites = [
         site_name: 'Videogames Repository',
         site_description: 'Individual Project. Made with React, Redux and pure SASS for the front. Use of rawg.io API. Has a backend with database for the creation of new games. Filter, pagination, forms and alerts development.',
         site_image: 'https://raw.githubusercontent.com/martinnegro/martinnegro/main/screenshots/Videogames.png',
-        site_link: 'http://143.198.58.101/'
+        site_link: 'https://gameshub-martinnegro.netlify.app/'
     },
     //  {
     //     site_name: 'WheatherApp',
