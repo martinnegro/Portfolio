@@ -1,39 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { LangsContext } from '../../contexts/LangsContext';
 import PortfolioCards from './components/PortfolioCards';
 import style from './Portfolio.module.scss';
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
-
-const sites = [
-    {
-        site_name: 'WheatherApp',
-        site_description: "One of my first projects as a Full Stack Dev student. Made with React. Use of OpenWeatherMap and OpenStreetMap APIs.",
-        site_image: "https://i.ibb.co/cxcTLrT/screenshot1.png",
-        site_link: 'https://martinnegro-weatherapp.netlify.app'
-    },{
-        site_name: 'Psitesis',
-        site_description: 'Blog and Forum for psychology students. Made with React, Redux and Material UI. API develop with Express JS, Sequelize and Postgres. The site has an admin panel for CRUD actions.\nDeveloped as a team over the course of 4 weeks. ',
-        site_image: "https://i.postimg.cc/Zqyn2HYn/screenshot.png",
-        site_link: 'https://psitesis.netlify.app'
-    },{
-        site_name: 'Videogames Repository',
-        site_description: 'Individual Project. Made with React, Redux and pure SASS for the front. Use of rawg.io API. Has a backend with database for the creation of new games. Filter, pagination, forms and alerts development.',
-        site_image: 'https://raw.githubusercontent.com/martinnegro/martinnegro/main/screenshots/Videogames.png',
-        site_link: 'https://gameshome-martinnegro.netlify.app/'
-    },
-    //  {
-    //     site_name: 'WheatherApp',
-    //     site_description: '',
-    //     site_image: '',
-    //     site_link: ''
-    // }
-];
 
 function Portfolio() {
     const [      scrollSize, setScrollSize    ] = useState(0);
     const [       pageWidth, setPageWidth     ] = useState(0);
     const [   numberOfPages, setNumberOfPages ] = useState(0);   
     const [     currentPage, setCurrentPage   ] = useState(0);
-    const [       actualPage, setActualPage   ] = useState(0);
+    const [      actualPage, setActualPage   ] = useState(0);
+
+    const { selectedLang } = useContext(LangsContext)
 
     useEffect(()=>{
         const cardsContainer = document.getElementById('cards-container');        
@@ -41,10 +19,10 @@ function Portfolio() {
         setScrollSize(cardsContainer.scrollWidth);
         const { matches } = window.matchMedia('(max-width: 40em)')
         // Setea la cantidad de páginas
-        matches ?  setNumberOfPages(sites.length-1) : setNumberOfPages(Math.ceil(sites.length / 2)-1);
+        matches ?  setNumberOfPages(selectedLang.sites.length-1) : setNumberOfPages(Math.ceil(selectedLang.sites.length / 2)-1);
         // Setea el ancho de cada página
         if (scrollSize > 0 && numberOfPages > 0) setPageWidth(Math.floor(scrollSize / (numberOfPages + 1)))
-    },[scrollSize,numberOfPages]);
+    },[scrollSize,numberOfPages,selectedLang.sites.length]);
 
     useEffect(()=>{
         // Listener por si cambia el tamaño de viewport
@@ -91,8 +69,8 @@ function Portfolio() {
                 className={style.cardsContainer}                
             >
                 {
-                    sites ? 
-                    sites.map((site, i) => (
+                    selectedLang.sites ? 
+                    selectedLang.sites.map((site, i) => (
                         <PortfolioCards
                             key={i}
                             site={site}

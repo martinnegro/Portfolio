@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import style from './Resume.module.scss'
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
+import { LangsContext } from '../../contexts/LangsContext';
       
 function Resume() {
     const [      arePages, setArePages      ] = useState(false);
@@ -9,6 +10,8 @@ function Resume() {
     const [     pageWidth, setPageWidth     ] = useState(0);
     const [   currentPage, setCurrentPage   ] = useState(0);
     const [    actualPage, setActualPage    ] = useState(0);
+
+    const { selectedLang } = useContext(LangsContext);
 
     useEffect(()=>{
         const infoContainer = document.getElementById('info-container');
@@ -33,7 +36,6 @@ function Resume() {
 
     useEffect(()=>{
         const infoContainer = document.getElementById('info-container');
-        console.log(infoContainer)
         const setter = () => {
             const position = pageWidth > 0 && infoContainer.scrollLeft / pageWidth;
             return setActualPage(Math.round(position)); 
@@ -75,66 +77,35 @@ function Resume() {
                 }
                 <div className={style.infoContainer} id="info-container">
                     <div className={style.subInfo}>
-                        <h2>Perfil</h2>
-                        <p>- Soy Full Stack </p>
-                        <p>- Programador JR buscando
-                            mi primer empleo en la industria, interesado
-                            en incorporar conocimientos y tecnologías a
-                            mis skills.
-                        </p>
-                        <p>
-                            - Disfruto de trabajar en equipo. Soy capaz de
-                            detectar necesidades e intereses de mis
-                            compañeros y entender que se espera de mí.
-                        </p>
-                        <p>
-                            - Desarrollo mi trabajo pensando en los
-                            objetivos finales de cada proyecto, su
-                            escalabilidad y la satisfacción del cliente.
-                        </p>
+                        <h2>{selectedLang.resume.profile.title}</h2>
+                        {
+                            selectedLang.resume.profile.p.map((p,i) => (<p key={i}>{p}</p>))
+                        }
                     </div>
                     <div className={style.subInfo}>
-                        <h2>Skills</h2>
-                        <p>- HTML
-                            - CSS
-                            - JavaScript
-                            - NodeJS
-                            - ReactJS
-                            - Redux
-
-                        </p>
-                        <p>- ExpressJS
-                            - Sequelize
-                            - Postgres
-                            - Git
-                            - SCRUM
-                        </p>
+                        <h2>{selectedLang.resume.skills.title}</h2>
+                        {
+                            selectedLang.resume.skills.p.map((p,i) => (<p key={i}>{p}</p>))
+                        }
                         </div>
                     <div className={style.subInfo}>
-
-                        <h2>Idiomas</h2>
-                        <p>- Español
-                            - Inglés Avanzado
-                        </p>
+                        <h2>{selectedLang.resume.langs.title}</h2>
+                        {
+                            selectedLang.resume.langs.p.map((p,i) => (<p key={i}>{p}</p>))
+                        }
                     </div>
                     <div className={style.subInfo}>
-                        <h2>Educación</h2>
-                        <h3>SOYHENRY BOOTCAMP</h3>
-                        <p>2021 - Full Stack Developer</p>
-                        <p>
-                        - Curso intensivo de 4 meses.
-                        - Estructura de datos y algoritmos.
-                        - JavaScript Avanzado
-                        - React Redux
-                        - Desarrollo de backend con Express.js, Sequelize y Postgres
-                        </p>
-                        <h3>THE ODIN PROJECT - FREECODECAMP</h3>
-                        <p>2021 - Full Stack Developer</p>
-                        <p>
-                        - Introducción a HTML, CSS y JavaScript.
-                        - Conceptos sobre Internet, Web y Programación.
-                        - Fundamentos de Python
-                        </p>
+                        <h2>{selectedLang.resume.education.title}</h2>
+                        {
+                            selectedLang.resume.education.ed.map((e,i) => (
+                                <>
+                                <h3 key={i}>{e.h3}</h3>
+                                {
+                                    e.p.map((p,j) => <p key={j}>{p}</p>)
+                                }
+                                </>
+                            ))
+                        }
                     </div>
                 </div>
                 {

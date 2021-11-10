@@ -1,0 +1,14 @@
+.container {
+    position: fixed;
+    right: 150px;
+    top: 10px;
+    z-index: 1;
+
+    button {
+        cursor: pointer;
+        border: none;
+        
+        margin: 2px;
+        font-size: 1.2rem;
+    }
+}
