@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import style from './Langs.module.scss';
 import { LangsContext } from '../contexts/LangsContext';
 
+
+
 function LangsButtons() {
     const {
         selectSpanish,

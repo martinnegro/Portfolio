@@ -61,3 +61,12 @@ button {
   button:active {
       transform: scale(0.8);
   }
+
+  a {
+    text-decoration: none;
+    color: #812F33;
+    transition: underline 0.2s;
+  }
+  a:hover {
+      text-decoration: underline;
+  }

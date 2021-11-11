@@ -5,7 +5,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Page from './containers/Page';
 import store from './redux/store';
-import LangsButtons from './components/LangsButtons';
+import TopButtons from './components/TopButtons';
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <Provider store={store}>
       <LangsContextProvider>
         <BrowserRouter>
-          <LangsButtons path='/'></LangsButtons>
+          <TopButtons path='/'></TopButtons>
           <NavBar path='/' />
           <Page path='/'/>
         </BrowserRouter>
