@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import LangsButtons from './LangsButtons';
 import Social from './Social';
 
-const style = {
+const styleDef = {
     container: {
         position: 'fixed',
         right: '150px',
@@ -14,6 +14,21 @@ const style = {
 }
 
 function TopButtons() {
+    
+    const [ style, setStyle ] = useState(styleDef)
+
+    useEffect(() => {
+        const { matches } = window.matchMedia('(max-width: 40em)');
+        if (matches) {
+            setStyle({
+                container: {
+                    ...style.container,
+                    right: '15px'
+                }
+            })
+        }
+    },[]);
+
     return (
         <div style={style.container}>
             <Social/>
